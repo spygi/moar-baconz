@@ -66,7 +66,7 @@ var Login = React.createClass({
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30
-      } 
+      }
     });
 
     return (
@@ -90,7 +90,8 @@ var Login = React.createClass({
         <TextInput style={styles.input}
                    onChangeText={(password) => this.setState({password})}>
         </TextInput>
-        <TouchableHighlight onPress={this.tryLogin}>
+        <TouchableHighlight underlayColor= '#FFF'
+                            onPress={this.tryLogin}>
           <Text style={styles.loginButton}>
           Send
         </Text>
