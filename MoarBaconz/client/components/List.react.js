@@ -1,56 +1,70 @@
 var React = require('react-native'),
-    BaconAPI = require('../utils/BaconAPI'),
-    Item = require('./Item.react'),
-    Ajax = require('../utils/ajax');
+BaconAPI = require('../utils/BaconAPI'),
+Item = require('./Item.react'),
+Ajax = require('../utils/ajax'),
+Constants = require('../constants/Constants');
 
 var {
   Image,
   Text,
   ListView,
+  AsyncStorage
 } = React;
 
 // a single product's view
 var List = React.createClass({
 
-_getFromServer: function() {
-  var accessToken = AsyncStorage.getItem(Constants.ACCESS_TOKEN), 
-      groupId = AsyncStorage.getItem(Constants.GROUP_ID),
-      endPoint = '/group/' + groupId;  
+  componentDidMount: function() {
+    var accessToken, 
+    groupId ,
+    endPoint; 
+    var success = function(response) {
 
-  var success = function(response) {
-      if (!response.success) {
-        console.log('error occurred, API returned ' + response.message);
-      } else {
-        console.log(response);
-        this.setState({items: response.items});
+      if(response){
+        if (response && !response.success && response.items) {
+          console.log('error occurred, API returned ' + response.message);
+        } else {
+          this.setState({items: response.items});
+        }
       }
+      
     };
 
-  var error = function(error) {
-    console.log('error', error);
-  };
+    var error = function(error) {
+      console.log('error', error);
+    }; 
+    var body = {};
 
-  console.log(endPoint);
+    AsyncStorage.getItem(Constants.ACCESS_TOKEN).then(function(token){
 
-  Ajax.do('GET', endPoint, body, success, error, accessToken);
-},
+      accessToken = token;
+      return AsyncStorage.getItem(Constants.GROUP_ID);
 
-getInitialState: function() {
-  this._getFromServer();
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    }).then(function(gid){
+
+      if(gid) {
+        groupId = "123";
+        endPoint = '/group/' + groupId;
+        Ajax.do('GET', endPoint, body, success, error, accessToken);
+      }
+      
+    });
+  },
+
+  getInitialState: function() {
     return {
-      dataSource: ds.cloneWithRows(this.state.items),
+      items: []
     };
   },
 
   render: function() {
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return (
-    <ListView
-      dataSource={this.state.dataSource}
-      renderRow={(rowData) => <Item item={rowData}></Item>}
-    />
+      <ListView
+      dataSource={ds}
+      renderRow={(rowData) => <Item item={rowData} />} />
     );
-  }
+}
 
 });
 

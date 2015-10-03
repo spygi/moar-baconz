@@ -24,9 +24,12 @@ var SignUp = React.createClass({
       }
 
       success = function(response) {
-        if (response.success) {
-          var accessToken = response.token;
+        console.log('signup',response);
+        if (response.success && response.result && response.result.token && response.result.id) {
+          var accessToken = response.result.token;
+          var memberId = response.result.id;
           AsyncStorage.setItem(Constants.ACCESS_TOKEN, accessToken);
+          AsyncStorage.setItem(Constants.MEMBER_ID, memberId);
         }
         else {
           console.log('error ocurred, API returned false');

@@ -30,64 +30,62 @@ var MainComponent = React.createClass({
     return { screen: { component: LogIn, title: "Log In" } };
   },
   _startAppWith: function(startingScreen) {
-      this.refs.nav.navigator.replace(startingScreen)
-      // this.setState({screen: startingScreen})
-    },
+    this.refs.nav.navigator.replace(startingScreen)
+    // this.setState({screen: startingScreen})
+  },
   _startAppWithAppropriateScreen: function () {
     var component = this;
-    AsyncStorage.getItem(Constants.ACCESS_TOKEN).then(function(accessToken)
-      {
-        if(accessToken) {
-          console.log(accessToken);
+    var accessToken;
+    AsyncStorage.getItem(Constants.ACCESS_TOKEN).then(function(token){
+      accessToken = token;
+      return AsyncStorage.getItem(Constants.MEMBER_ID);
+    }).then(function(memberId){
+      
+          if(accessToken && memberId) {
 
-          var body = {};
+            var body = {};
 
-          var success = function(response) {
-            console.log('success callback');
-            console.log(response);
+            var success = function(response) {
 
-            if (response.success) {
-              component._startAppWith(
-                {
-                  component: List,
-                  title: "My List"
-                }
-              );
-            }
-            else {
-              component._startAppWith(
-                {
-                  component: LogIn,
-                  title: "Log In"
-                }
-              );
-            }
-          };
-          var error = function(response) {
-            console.log("An error ocurred",response);
-          };
+              if (response.success) {
+                component._startAppWith(
+                  {
+                    component: List,
+                    title: "My List"
+                  }
+                );
+              }
+              else {
+                component._startAppWith(
+                  {
+                    component: LogIn,
+                    title: "Log In"
+                  }
+                );
+              }
+            };
+            var error = function(response) {
+              console.log("An error ocurred", response);
+            };
 
-          Ajax.do('GET', 'member/56103efdb571a511001fc2f6', body, success, error, accessToken);
-        }
-        else {
-          component._startAppWith(
-            {
-              component: SignUp,
-              title: "Sign Up"
-            }
-          );
-        }
-      }
-    );
+            Ajax.do('GET', 'member/'+memberId, body, success, error, accessToken);
+          }
+          else {
+            component._startAppWith(
+              {
+                component: SignUp,
+                title: "Sign Up"
+              }
+            );
+          }
+        });
+     
   },
   componentDidMount: function() {
    this._startAppWithAppropriateScreen();
   },
 
   render: function() {
-    console.log('render');
-    console.log('state',this.state);
-    console.log('state',this.state.screen);
     return (
         <NavigatorIOS
             style={styles.container}
@@ -115,6 +113,5 @@ var MainComponent = React.createClass({
   }
 
 });
-
 
 module.exports = MainComponent;

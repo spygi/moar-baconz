@@ -24,9 +24,11 @@ var Login = React.createClass({
       }
 
       success = function(response) {
-        if (response.success) {
+        if (response.success && response.id) {
           var accessToken = response.token;
+          var memberId = response.id;
           AsyncStorage.setItem(Constants.ACCESS_TOKEN, accessToken);
+          AsyncStorage.setItem(Constants.MEMBER_ID, memberId);
         }
         else {
           console.log('error ocurred, API returned false');

@@ -8,5 +8,6 @@ module.exports = {
   DO_NOT_BUY: "DO_NOT_BUY", // Item state (GREEN)
 
   ACCESS_TOKEN: "token",
+  MEMBER_ID: "id",
   GROUP_ID: "groupId"
 };
