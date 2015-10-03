@@ -8,38 +8,57 @@ var {
 } = React;
 
 // Flux login view
-var FluxLogin = React.createClass({
+var Login = React.createClass({
 
   // Render Login View
   render: function() {
+
+    var blue = '#1D8DA4';
     var styles = StyleSheet.create({
       container: {
         alignItems: 'center',
-        backgroundColor: "#CCC",
+        backgroundColor: "#FFF",
         flex: 1,
         flexDirection: 'column',
         paddingTop: 80,
         // justifyContent: 'center',
       },
       avatar: {
-        borderRadius: 40,
-        height: 80,
-        marginBottom: 20,
-        width: 80,
+        borderRadius: 50,
+        height: 100,
+        marginBottom: 50,
+        width: 100,
       },
       avatarLabel: {
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        marginBottom: 20,
+        color: blue,
+        marginLeft: 30,
+        marginRight: 30
       },
-      userNameInput: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1
+      inputLabel: {
+        fontStyle: 'italic',
+        marginBottom: 10,
+        color: blue
       },
-      passwordInput: {
+      input: {
+        borderColor: blue,
+        borderWidth: 1,
+        borderRadius: 10,
         height: 40,
-        borderColor: 'gray',
-        borderWidth: 1
-      }
+        marginBottom: 20,
+        marginLeft: 30,
+        marginRight: 30
+      },
+      loginButton: {
+        backgroundColor: blue,
+        borderRadius: 20,
+        color: '#fff',
+        marginTop: 30,
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30
+      } 
     });
 
     return (
@@ -49,22 +68,25 @@ var FluxLogin = React.createClass({
           source={{uri: 'http://s1h.roomido.com/bundles/gujhomestylrfrontend/images/placeholder_avatar_300x300.png'}}
         />
         <Text style={styles.avatarLabel}>
-          Hoi
+          Welcome to MoarBacon APP, please fill in your credentials
         </Text>
-        <Text style={styles.userNameLabel}>
+        <Text style={styles.inputLabel}>
           UserName
         </Text>
-        <TextInput style={styles.userNameInput}>
+        <TextInput style={styles.input}>
         </TextInput>
-        <Text style={styles.passwordLabel}>
+        <Text style={styles.inputLabel}>
           Password
         </Text>
-        <TextInput style={styles.passwordInput}>
+        <TextInput style={styles.input}>
         </TextInput>
+        <Text style={styles.loginButton}>
+          Send
+        </Text>
       </View>
     );
   },
 
 });
 
-module.exports = FluxLogin;
+module.exports = Login;
