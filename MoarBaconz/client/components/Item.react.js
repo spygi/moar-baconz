@@ -1,8 +1,10 @@
-var React = require('react-native');
-var Constants = require('../constants/Constants');
-var _ = require('lodash');
+var React = require('react-native'),
+    Constants = require('../constants/Constants'),
+    _ = require('lodash'),
+    Ajax = require('../utils/ajax');
 
 var {
+  AsyncStorage,
   StyleSheet,
   Image,
   Text,
@@ -30,10 +32,41 @@ var codeFromState = function(state){
 
 // a single item's view
 var Item = React.createClass({
+  _updateServer: function(state) {
+    var accessToken = AsyncStorage.getItem(Constants.ACCESS_TOKEN), 
+        groupId = AsyncStorage.getItem(Constants.GROUP_ID),
+        endPoint = '/group/' + groupId + '/item/' + this.props.item.itemId;  
+    
+    var body = {
+          item: {
+            state: state  
+          }
+    };
+    body[Constants.GROUP_ID] = groupId;
+
+    var success = function(response) {
+        if (!response.success) {
+          console.log('error occurred, API returned ' + response.message);
+        }
+      };
+
+    var error = function(error) {
+      console.log('error', error);
+    };
+
+    console.log(endPoint);
+
+    Ajax.do('PUT', endPoint, body, success, error);
+  },
+
   _toggleStatus: function() {
     var key = (codeFromState(this.state.availability) + 1) % (_.size(states));
+    var newState = states[key];
 
-    this.setState({'availability': states[key]});
+    // update localy
+    this.setState({'availability': newState});
+    // and remotely
+    this._updateServer(newState);
   },
 
   getInitialState: function(){    

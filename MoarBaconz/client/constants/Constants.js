@@ -7,5 +7,6 @@ module.exports = {
   MAYBE_BUY: "MAYBE_BUY", // Item state (YELLOW)
   DO_NOT_BUY: "DO_NOT_BUY", // Item state (GREEN)
 
-  ACCESS_TOKEN: "token"
+  ACCESS_TOKEN: "token",
+  GROUP_ID: "groupId"
 };
