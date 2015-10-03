@@ -14,55 +14,5 @@ var {
 } = React;
 
 var BaconAPI = require('./client/utils/BaconAPI');
-
-var MoarBaconz = React.createClass({
-
-  render: function() {
-
-    var product = BaconAPI.getProductData();
-
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          {product.name}
-        </Text>
-        <Image
-          style={styles.icon}
-          source={{uri: product.icon}}
-        />
-        <Text style={styles.instructions}>
-          {product.state}
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-});
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#CCC',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  icon: {
-    height: 40,
-    width: 40
-  }
-});
-
-AppRegistry.registerComponent('MoarBaconz', () => MoarBaconz);
+var FluxProduct = require('./client/components/FluxProduct.react');
+AppRegistry.registerComponent('MoarBaconz', () => FluxProduct);
