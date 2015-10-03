@@ -21,7 +21,7 @@ module.exports = {
      itemId: '0003',
      name: 'Eggs',
      icon: 'http://www.berkleys.com.au/wp-content/uploads/2014/03/cracked-brown-egg.jpg',
-     state: ''
+     state: 'MAYBE_BUY'
    }];
 
    return data;
