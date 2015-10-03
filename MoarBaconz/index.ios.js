@@ -12,15 +12,11 @@ var {
   View,
 } = React;
 
-var product = 
-    {
-      itemId: '0001',
-      name: 'Bread',
-      icon: 'http://globe-views.com/dcim/dreams/bread/bread-05.jpg', 
-      state: 'DO_NOT_BUY'   
-    }
+var BaconAPI = require('./client/utils/BaconAPI');
+var product = BaconAPI.getProductData();
 
 var MoarBaconz = React.createClass({
+
 
   render: function() {
     return (
