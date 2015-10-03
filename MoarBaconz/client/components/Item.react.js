@@ -1,6 +1,4 @@
 var React = require('react-native');
-var BaconAPI = require('../utils/BaconAPI');
-var product = BaconAPI.getProductData();
 
 var {
   StyleSheet,
@@ -10,20 +8,25 @@ var {
 } = React;
 
 // a single product's view
-var FluxProduct = React.createClass({
+var Item = React.createClass({
+  getInitialState: function(){    
+    return {
+      availability: this.props.item.state
+    }
+  },
 
   render: function() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          {product.name}
+          {this.props.item.name}
         </Text>
         <Image
           style={styles.icon}
-          source={{uri: product.icon}}
+          source={{uri: this.props.item.icon}}
         />
         <Text style={styles.instructions}>
-          {product.state}
+          {this.state.availability}
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
@@ -57,4 +60,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = FluxProduct;
+module.exports = Item;
