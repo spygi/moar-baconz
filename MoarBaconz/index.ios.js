@@ -1,27 +1,24 @@
 'use strict';
 
 var React = require('react-native');
+var MainComponent = require('./client/components/MainComponent.react');
+var Constants = require('./client/constants/Constants');
+var Ajax = require('./client/utils/ajax');
 var {
-  AppRegistry
+  AppRegistry,
+  AsyncStorage,
+  NavigatorIOS
 } = React;
 
-// Temporary switches (I WILL ZESTROY ZEM NAO)
-var displayLoginForm = true;
-var displaySignUpForm = true;
+var SignUp = require('./client/components/SignUp.react'),
+    Login = require('./client/components/Login.react'),
+    List = require('./client/components/List.react');
 
-if (displayLoginForm) 
-{
-  if (displaySignUpForm) {
-    var SignUp = require('./client/components/SignUp.react');
-    AppRegistry.registerComponent('MoarBaconz', () => SignUp);
-  }
-  else {
-    var Login = require('./client/components/Login.react');
-    AppRegistry.registerComponent('MoarBaconz', () => Login);
+
+var styles = {
+  container: {
+    flex: 1
   }
 }
-else 
-{
-  var List = require('./client/components/List.react');
-  AppRegistry.registerComponent('MoarBaconz', () => List);
-}
+
+  AppRegistry.registerComponent('MoarBaconz', () => MainComponent);
