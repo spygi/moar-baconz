@@ -17,6 +17,7 @@
     - get items filtered by state
 
   - Mongo db
+  ```
   Schema: groups : {
       groupId: '', // @unique, @indexed
       name: '',
@@ -36,7 +37,7 @@
 	  photo: '', // public url
 	  currentLocation: ''
 	}
-
+  ```
 + Authentication
   - [UI] Register/Login screen for users 
   - [UI] Creating groups (inviting people to your group)
