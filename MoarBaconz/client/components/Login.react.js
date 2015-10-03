@@ -50,6 +50,7 @@ var Login = React.createClass({
   render: function() {
 
     var blue = '#1D8DA4';
+    var orange = '#FF9128';
     var styles = StyleSheet.create({
       container: {
         alignItems: 'center',
@@ -74,12 +75,13 @@ var Login = React.createClass({
         textAlign: 'center'
       },
       inputLabel: {
+        color: blue,
         fontStyle: 'italic',
         marginBottom: 10,
-        color: blue
+        textAlign: 'left'
       },
       input: {
-        borderColor: blue,
+        borderColor: orange,
         borderWidth: 1,
         borderRadius: 10,
         color: blue,
@@ -90,13 +92,13 @@ var Login = React.createClass({
         padding: 8
       },
       loginButton: {
-        backgroundColor: blue,
-        borderRadius: 20,
+        backgroundColor: orange,
+        borderRadius: 10,
         color: '#fff',
         marginTop: 30,
         padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30
+        paddingLeft: 40,
+        paddingRight: 40
       }
     });
 
