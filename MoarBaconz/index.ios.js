@@ -1,7 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
@@ -9,7 +5,7 @@ var {
   AppRegistry
 } = React;
 
-// Temporary switches to develop login form in parallel
+// Temporary switches (I WILL ZESTROY ZEM NAO)
 var displayLoginForm = true;
 var displaySignUpForm = true;
 
