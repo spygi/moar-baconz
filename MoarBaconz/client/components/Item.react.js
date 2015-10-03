@@ -42,7 +42,7 @@ var Item = React.createClass({
             state: state  
           }
     };
-    body[Constants.GROUP_ID] = groupId;
+    body[Constants.ACCESS_TOKEN] = accessToken;
 
     var success = function(response) {
         if (!response.success) {
