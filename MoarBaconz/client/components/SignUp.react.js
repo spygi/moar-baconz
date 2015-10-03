@@ -12,9 +12,9 @@ var {
   View
 } = React;
 
-// Flux login view
-var Login = React.createClass({
-  tryLogin: function() {
+// Flux SignUp view
+var SignUp = React.createClass({
+  trySignUp: function() {
     // Validation 
     if (this.state.email && this.state.password) {
 
@@ -37,15 +37,11 @@ var Login = React.createClass({
         console.log('error',error);
       }
 
-      Ajax.do('POST', 'authenticate', body, success, error);
+      Ajax.do('POST', 'member', body, success, error);
     }
     else {
       // Notify the user that something is missing
     }
-  },
-
-  goToSignUp: function (){
-
   },
 
   // Render Login View
@@ -93,18 +89,11 @@ var Login = React.createClass({
         marginRight: 30,
         padding: 8
       },
-      loginButton: {
+      signUpButton: {
         backgroundColor: orange,
         borderRadius: 10,
         color: '#fff',
         marginTop: 30,
-        padding: 10,
-        paddingLeft: 40,
-        paddingRight: 40
-      },
-      signUpLink: {
-        color: blue,
-        marginTop: 10,
         padding: 10,
         paddingLeft: 40,
         paddingRight: 40
@@ -117,9 +106,6 @@ var Login = React.createClass({
           style={styles.avatar}
           source={{uri: 'http://s1h.roomido.com/bundles/gujhomestylrfrontend/images/placeholder_avatar_300x300.png'}}
         />
-        <Text style={styles.avatarLabel}>
-          Welcome to MoarBacon APP, please fill in your credentials
-        </Text>
         <Text style={styles.inputLabel}>
           Email
         </Text>
@@ -137,14 +123,8 @@ var Login = React.createClass({
                    onChangeText={(password) => this.setState({password})}>
         </TextInput>
         <TouchableHighlight underlayColor= '#FFF'
-                            onPress={this.tryLogin}>
-          <Text style={styles.loginButton}>
-            Login
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight underlayColor= '#FFF'
-                            onPress={this.goToSignUp}>
-          <Text style={styles.signUpLink}>
+                            onPress={this.trySignUp}>
+          <Text style={styles.signUpButton}>
             Sign Up
           </Text>
         </TouchableHighlight>
@@ -154,4 +134,4 @@ var Login = React.createClass({
 
 });
 
-module.exports = Login;
+module.exports = SignUp;

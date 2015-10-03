@@ -9,13 +9,20 @@ var {
   AppRegistry
 } = React;
 
-// Temporary switch to develop login form in parallel
+// Temporary switches to develop login form in parallel
 var displayLoginForm = true;
+var displaySignUpForm = true;
 
 if (displayLoginForm) 
 {
-  var Login = require('./client/components/Login.react');
-  AppRegistry.registerComponent('MoarBaconz', () => Login);
+  if (displaySignUpForm) {
+    var SignUp = require('./client/components/SignUp.react');
+    AppRegistry.registerComponent('MoarBaconz', () => SignUp);
+  }
+  else {
+    var Login = require('./client/components/Login.react');
+    AppRegistry.registerComponent('MoarBaconz', () => Login);
+  }
 }
 else 
 {
