@@ -19,6 +19,6 @@ if (displayLoginForm)
 }
 else 
 {
-  var Item = require('./client/components/Item.react');
-  AppRegistry.registerComponent('MoarBaconz', () => Item);
+  var List = require('./client/components/List.react');
+  AppRegistry.registerComponent('MoarBaconz', () => List);
 }
