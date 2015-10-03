@@ -6,11 +6,7 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
-  StyleSheet,
-  Image,
-  Text,
-  View,
+  AppRegistry
 } = React;
 
 // Temporary switch to develop login form in parallel
@@ -23,6 +19,6 @@ if (displayLoginForm)
 }
 else 
 {
-  var FluxProduct = require('./client/components/FluxProduct.react');
-  AppRegistry.registerComponent('MoarBaconz', () => FluxProduct);
+  var Item = require('./client/components/Item.react');
+  AppRegistry.registerComponent('MoarBaconz', () => Item);
 }
