@@ -13,6 +13,16 @@ var {
   View,
 } = React;
 
-var BaconAPI = require('./client/utils/BaconAPI');
-var FluxProduct = require('./client/components/FluxProduct.react');
-AppRegistry.registerComponent('MoarBaconz', () => FluxProduct);
+// Temporary switch to develop login form in parallel
+var displayLoginForm = true;
+
+if (displayLoginForm) 
+{
+  var FluxLogin = require('./client/components/FluxLogin.react');
+  AppRegistry.registerComponent('MoarBaconz', () => FluxLogin);
+}
+else 
+{
+  var FluxProduct = require('./client/components/FluxProduct.react');
+  AppRegistry.registerComponent('MoarBaconz', () => FluxProduct);
+}
