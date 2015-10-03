@@ -8,22 +8,28 @@ var React = require('react-native');
 var {
   AppRegistry,
   StyleSheet,
+  Image,
   Text,
   View,
 } = React;
 
 var BaconAPI = require('./client/utils/BaconAPI');
-var product = BaconAPI.getProductData();
 
 var MoarBaconz = React.createClass({
 
-
   render: function() {
+
+    var product = BaconAPI.getProductData();
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           {product.name}
         </Text>
+        <Image
+          style={styles.icon}
+          source={{uri: product.icon}}
+        />
         <Text style={styles.instructions}>
           {product.state}
         </Text>
@@ -41,7 +47,7 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#CCC',
   },
   welcome: {
     fontSize: 20,
@@ -53,6 +59,10 @@ var styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  icon: {
+    height: 40,
+    width: 40
+  }
 });
 
 AppRegistry.registerComponent('MoarBaconz', () => MoarBaconz);
