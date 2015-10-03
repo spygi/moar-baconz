@@ -1,6 +1,7 @@
 var React = require('react-native'),
     Ajax = require('../utils/ajax'),
     BaconConstants = require('../constants/FluxBaconConstants');
+
 var {
   AsyncStorage,
   Image,
@@ -38,6 +39,13 @@ var Login = React.createClass({
 
       Ajax.do('POST', 'authenticate', body, success, error);
     }
+    else {
+      // Notify the user that something is missing
+    }
+  },
+
+  goToSignUp: function (){
+
   },
 
   // Render Login View
@@ -71,8 +79,7 @@ var Login = React.createClass({
       inputLabel: {
         color: blue,
         fontStyle: 'italic',
-        marginBottom: 10,
-        textAlign: 'left'
+        marginBottom: 10
       },
       input: {
         borderColor: orange,
@@ -93,6 +100,13 @@ var Login = React.createClass({
         padding: 10,
         paddingLeft: 40,
         paddingRight: 40
+      },
+      signUpLink: {
+        color: blue,
+        marginTop: 10,
+        padding: 10,
+        paddingLeft: 40,
+        paddingRight: 40
       }
     });
 
@@ -109,19 +123,29 @@ var Login = React.createClass({
           Email
         </Text>
         <TextInput style={styles.input}
+                   placeholder="bacon@fryingpan.now"
+                   placeholderTextColor="#FFBB7A"
                    onChangeText={(email) => this.setState({email})}>
         </TextInput>
         <Text style={styles.inputLabel}>
           Password
         </Text>
         <TextInput style={styles.input}
+                   placeholder="******"
+                   placeholderTextColor="#FFBB7A"
                    onChangeText={(password) => this.setState({password})}>
         </TextInput>
         <TouchableHighlight underlayColor= '#FFF'
                             onPress={this.tryLogin}>
           <Text style={styles.loginButton}>
-          Send
-        </Text>
+            Login
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight underlayColor= '#FFF'
+                            onPress={this.goToSignUp}>
+          <Text style={styles.signUpLink}>
+            Sign Up
+          </Text>
         </TouchableHighlight>
       </View>
     );
