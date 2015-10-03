@@ -1,9 +1,8 @@
 var BackgroundGeolocation = require('react-native-background-geolocation');
 
 
-var onLocation = function(){
-	console.log('onLocation');
-	console.log(arguments);
+var onLocation = function(data){
+	//data.coords
 	
 };
 
@@ -21,11 +20,8 @@ var setupTracking = function(){
 	BackgroundGeolocation.on('location', onLocation); 
 	BackgroundGeolocation.on('onGeofence', onGeofence); 
 
-console.log('starting tracking');
  	BackgroundGeolocation.start(function(){
-
- 	}, function(){
- 		
+ 		// successfully started tracking (ie the user allowed it)
  	});
 };
 
