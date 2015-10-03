@@ -11,8 +11,39 @@ var {
 // Flux login view
 var Login = React.createClass({
 
+  _ajax: function(apiEndpoint, body) {
+
+    var parameters = {  
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    };
+
+    fetch('http://moarbaconz.io/api/authenticate', parameters)  
+      .then(function(res) {
+        console.log('res',res);
+        return res.json();
+       })
+      .then(function(resJson) {
+        console.log('resJson',resJson);
+        return resJson;
+       })
+  },
+
   tryLogin: function() {
-    console.log(this.state);
+    // Validation 
+    if (this.state.email && this.state.password) {
+
+      var body = {
+        email: this.state.email,
+        password: this.state.password
+      }
+
+      this._ajax(body);
+    }
   },
 
   // Render Login View
@@ -79,10 +110,10 @@ var Login = React.createClass({
           Welcome to MoarBacon APP, please fill in your credentials
         </Text>
         <Text style={styles.inputLabel}>
-          UserName
+          Email
         </Text>
         <TextInput style={styles.input}
-                   onChangeText={(name) => this.setState({name})}>
+                   onChangeText={(email) => this.setState({email})}>
         </TextInput>
         <Text style={styles.inputLabel}>
           Password
