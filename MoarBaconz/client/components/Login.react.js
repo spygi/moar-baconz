@@ -1,6 +1,7 @@
 var React = require('react-native'),
     Ajax = require('../utils/ajax'),
-    Constants = require('../constants/Constants');
+    Constants = require('../constants/Constants'),
+    geo = require('../utils/geo');
 
 var {
   AsyncStorage,
@@ -48,6 +49,9 @@ var Login = React.createClass({
 
   },
 
+  componentDidMount: function(){
+      geo.setupTracking();
+  },
   // Render Login View
   render: function() {
 
