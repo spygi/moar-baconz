@@ -34,7 +34,6 @@ var Item = React.createClass({
     var key = (codeFromState(this.state.availability) + 1) % (_.size(states));
 
     this.setState({'availability': states[key]});
-    console.log(this.state.availability); 
   },
 
   getInitialState: function(){    
@@ -46,7 +45,7 @@ var Item = React.createClass({
   render: function() {
     return (
       <TouchableHighlight onPress={this._toggleStatus}>
-      <View style={[styles.container, this.state.availability === Constants.BUY && styles.buy, this.state.availability === Constants.DO_NOT_BUY && styles.doNotBuy]} >
+      <View style={[styles.container, this.state.availability === Constants.BUY && styles.buy, this.state.availability === Constants.MAYBE_BUY && styles.maybeBuy, this.state.availability === Constants.DO_NOT_BUY && styles.doNotBuy]} >
       <Image 
       style={styles.icon}
       source={{uri: this.props.item.icon}}
@@ -64,7 +63,6 @@ var styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#CCC',
   },
@@ -73,7 +71,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  availability: {
+  availability: {    
     flex: 1,
     textAlign: 'center',
     color: '#333333',
