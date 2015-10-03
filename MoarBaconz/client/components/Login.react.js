@@ -1,12 +1,14 @@
-var React = require('react-native');
-var Ajax = require('../utils/ajax');
+var React = require('react-native'),
+    Ajax = require('../utils/ajax'),
+    BaconConstants = require('../constants/FluxBaconConstants');
 var {
-  StyleSheet,
+  AsyncStorage,
   Image,
+  StyleSheet,
   Text,
   TextInput,
   TouchableHighlight,
-  View,
+  View
 } = React;
 
 // Flux login view
@@ -20,7 +22,21 @@ var Login = React.createClass({
         password: this.state.password
       }
 
-      Ajax.do('POST', 'authenticate', body);
+      success = function(response) {
+        if (response.success) {
+          var accessToken = response.token;
+          AsyncStorage.setItem(BaconConstants.ACCESS_TOKEN, accessToken);
+        }
+        else {
+          console.log('error ocurred, API returned false');
+        }
+      }
+
+      var error = function(error) {
+        console.log('error',error);
+      }
+
+      Ajax.do('POST', 'authenticate', body, success, error);
     }
   },
 

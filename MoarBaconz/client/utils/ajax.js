@@ -1,5 +1,5 @@
 module.exports = {
-   do: function(method, resource, body) {
+  do: function(method, path, body, successCallback, errorCallback) {
     var endPoint = 'http://moarbaconz.io/api/', parameters = {  
       method: method,
       headers: {
@@ -9,16 +9,15 @@ module.exports = {
       body: JSON.stringify(body)
     };
 
-    fetch(endPoint + resource , parameters)  
-      .then(function(res) {
-        console.log('res',res);
-        return res.json();
-       })
-      .then(function(resJson) {
-        console.log('resJson',resJson);
-        return resJson;
-     }).catch((error) => {
-      console.warn(error);
-     });
+    fetch(endPoint + path , parameters)  
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson) => {
+        successCallback(responseJson)
+      })
+      .catch((error) => {
+        errorCallback(error);
+      });
   }
 };
