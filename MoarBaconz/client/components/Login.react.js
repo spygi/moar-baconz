@@ -46,10 +46,12 @@ var Login = React.createClass({
         borderColor: blue,
         borderWidth: 1,
         borderRadius: 10,
+        color: blue,
         height: 40,
         marginBottom: 20,
         marginLeft: 30,
-        marginRight: 30
+        marginRight: 30,
+        padding: 8
       },
       loginButton: {
         backgroundColor: blue,
