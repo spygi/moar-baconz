@@ -14,8 +14,8 @@ var displayLoginForm = true;
 
 if (displayLoginForm) 
 {
-  var FluxLogin = require('./client/components/FluxLogin.react');
-  AppRegistry.registerComponent('MoarBaconz', () => FluxLogin);
+  var Login = require('./client/components/Login.react');
+  AppRegistry.registerComponent('MoarBaconz', () => Login);
 }
 else 
 {
