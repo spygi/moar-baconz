@@ -4,11 +4,16 @@ var {
   Image,
   Text,
   TextInput,
+  TouchableHighlight,
   View,
 } = React;
 
 // Flux login view
 var Login = React.createClass({
+
+  tryLogin: function() {
+    console.log(this.state);
+  },
 
   // Render Login View
   render: function() {
@@ -76,16 +81,20 @@ var Login = React.createClass({
         <Text style={styles.inputLabel}>
           UserName
         </Text>
-        <TextInput style={styles.input}>
+        <TextInput style={styles.input}
+                   onChangeText={(name) => this.setState({name})}>
         </TextInput>
         <Text style={styles.inputLabel}>
           Password
         </Text>
-        <TextInput style={styles.input}>
+        <TextInput style={styles.input}
+                   onChangeText={(password) => this.setState({password})}>
         </TextInput>
-        <Text style={styles.loginButton}>
+        <TouchableHighlight onPress={this.tryLogin}>
+          <Text style={styles.loginButton}>
           Send
         </Text>
+        </TouchableHighlight>
       </View>
     );
   },
