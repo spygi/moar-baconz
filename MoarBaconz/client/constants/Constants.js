@@ -1,4 +1,4 @@
-// Define action constants
+// Define action & other constants
 module.exports = {
 
   TOGGLE_AVAILABILITY: "TOGGLE_AVAILABILITY", // Toggle availability of a specified product

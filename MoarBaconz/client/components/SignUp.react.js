@@ -1,6 +1,6 @@
 var React = require('react-native'),
     Ajax = require('../utils/ajax'),
-    BaconConstants = require('../constants/FluxBaconConstants');
+    Constants = require('../constants/Constants');
 
 var {
   AsyncStorage,
@@ -26,7 +26,7 @@ var SignUp = React.createClass({
       success = function(response) {
         if (response.success) {
           var accessToken = response.token;
-          AsyncStorage.setItem(BaconConstants.ACCESS_TOKEN, accessToken);
+          AsyncStorage.setItem(Constants.ACCESS_TOKEN, accessToken);
         }
         else {
           console.log('error ocurred, API returned false');

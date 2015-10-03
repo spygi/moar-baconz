@@ -1,5 +1,5 @@
 var React = require('react-native');
-var Constants = require('../constants/FluxBaconConstants');
+var Constants = require('../constants/Constants');
 var _ = require('lodash');
 
 var {

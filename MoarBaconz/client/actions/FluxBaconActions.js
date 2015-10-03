@@ -1,5 +1,5 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
-var FluxBaconConstants = require('../constants/FluxBaconConstants');
+var Constants = require('../constants/Constants');
 
 // Define actions object
 var FluxBaconActions = {
@@ -7,7 +7,7 @@ var FluxBaconActions = {
   // Toggle availability of product
   toggleAvailability: function(productId){
     AppDispatcher.handleAction({
-      actionType: FluxBaconConstants.TOGGLE_AVAILABILITY,
+      actionType: Constants.TOGGLE_AVAILABILITY,
       productId: productId
     })
   }
