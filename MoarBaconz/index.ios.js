@@ -12,15 +12,24 @@ var {
   View,
 } = React;
 
+var product = 
+    {
+      itemId: '0001',
+      name: 'Bread',
+      icon: 'http://globe-views.com/dcim/dreams/bread/bread-05.jpg', 
+      state: 'DO_NOT_BUY'   
+    }
+
 var MoarBaconz = React.createClass({
+
   render: function() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          {product.name}
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          {product.state}
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
