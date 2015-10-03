@@ -6,13 +6,8 @@
 
 var React = require('react-native');
 var {
-  AppRegistry,
-  StyleSheet,
-  Image,
-  Text,
-  View,
+  AppRegistry
 } = React;
+var Item = require('./client/components/Item.react');
 
-var BaconAPI = require('./client/utils/BaconAPI');
-var FluxProduct = require('./client/components/FluxProduct.react');
-AppRegistry.registerComponent('MoarBaconz', () => FluxProduct);
+AppRegistry.registerComponent('MoarBaconz', () => Item);
