@@ -28,10 +28,6 @@ var Item = React.createClass({
         <Text style={styles.instructions}>
           {this.state.availability}
         </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
       </View>
     );
   },

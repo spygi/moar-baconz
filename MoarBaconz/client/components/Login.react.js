@@ -26,15 +26,16 @@ var Login = React.createClass({
       avatar: {
         borderRadius: 50,
         height: 100,
-        marginBottom: 50,
+        marginBottom: 20,
         width: 100,
       },
       avatarLabel: {
         fontStyle: 'italic',
-        marginBottom: 20,
+        marginBottom: 40,
         color: blue,
         marginLeft: 30,
-        marginRight: 30
+        marginRight: 30,
+        textAlign: 'center'
       },
       inputLabel: {
         fontStyle: 'italic',
