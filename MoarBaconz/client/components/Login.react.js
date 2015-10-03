@@ -1,4 +1,5 @@
 var React = require('react-native');
+var Ajax = require('../utils/ajax');
 var {
   StyleSheet,
   Image,
@@ -10,29 +11,6 @@ var {
 
 // Flux login view
 var Login = React.createClass({
-
-  _ajax: function(apiEndpoint, body) {
-
-    var parameters = {  
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    };
-
-    fetch('http://moarbaconz.io/api/authenticate', parameters)  
-      .then(function(res) {
-        console.log('res',res);
-        return res.json();
-       })
-      .then(function(resJson) {
-        console.log('resJson',resJson);
-        return resJson;
-       })
-  },
-
   tryLogin: function() {
     // Validation 
     if (this.state.email && this.state.password) {
@@ -42,7 +20,7 @@ var Login = React.createClass({
         password: this.state.password
       }
 
-      this._ajax(body);
+      Ajax.do('POST', 'authenticate', body);
     }
   },
 
