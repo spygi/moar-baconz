@@ -21,16 +21,19 @@ var styles = {
 
 var SignUp = require('./SignUp.react'),
     LogIn = require('./Login.react'),
+    Loading = require('./Loading.react'),
     List = require('./List.react');
 
 // Flux Main view
 var MainComponent = React.createClass({
 
   getInitialState: function() {
-    return { screen: { component: LogIn, title: "Log In" } };
+    return { screen: { component: Loading, title: "Welcome" } };
   },
   _startAppWith: function(startingScreen) {
-    this.refs.nav.navigator.replace(startingScreen)
+    console.log('startingScreen',startingScreen);
+    this.refs.nav.navigator.replace(startingScreen);
+    console.log(this.refs.nav.navigator);
     // this.setState({screen: startingScreen})
   },
   _startAppWithAppropriateScreen: function () {
