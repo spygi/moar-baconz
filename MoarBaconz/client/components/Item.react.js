@@ -33,16 +33,7 @@ var codeFromState = function(state){
 // a single item's view
 var Item = React.createClass({
   _updateServer: function(state) {
-    var accessToken = AsyncStorage.getItem(Constants.ACCESS_TOKEN), 
-        groupId = AsyncStorage.getItem(Constants.GROUP_ID),
-        endPoint = '/group/' + groupId + '/item/' + this.props.item.itemId;  
-    
-    var body = {
-          item: {
-            state: state  
-          }
-    };
-    body[Constants.ACCESS_TOKEN] = accessToken;
+    var accessToken, endPoint;
 
     var success = function(response) {
         if (!response.success) {
@@ -54,9 +45,22 @@ var Item = React.createClass({
       console.log('error', error);
     };
 
-    console.log(endPoint);
+    AsyncStorage.getItem(Constants.ACCESS_TOKEN).then(function(token){
+      accessToken = token;
+      return AsyncStorage.getItem(Constants.GROUP_ID);
+    }).then(function(groupId) {
+      endPoint = '/group/' + groupId + '/item/' + this.props.item['_id'];  
 
-    Ajax.do('PUT', endPoint, body, success, error);
+      var body = {
+        item: {
+          state: state  
+        }   
+      };
+
+      body[Constants.ACCESS_TOKEN] = accessToken;
+
+      Ajax.do('PUT', endPoint, body, success, error);
+    }.bind(this));
   },
 
   _toggleStatus: function() {
@@ -71,7 +75,7 @@ var Item = React.createClass({
 
   getInitialState: function(){    
     return {
-      availability: this.props.item.state
+      availability: this.props.item.state || Constants.BUY
     }
   },
 

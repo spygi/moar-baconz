@@ -31,10 +31,13 @@ var List = React.createClass({
 
     AsyncStorage.getItem(Constants.ACCESS_TOKEN).then(function(token){
       accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InNnIiwiaGFzaCI6IiQyYSQwOCRmUUo4c1RjdGswcmFSTTM0Z0FyRVdlN1JDSzk5cTdTb3g3QjlEdXZjc3FTRmoyeUpMMGs0LiIsImlhdCI6MTQ0MzkxMjY5Mn0.b_zkjRnTrK0amaLtA8dMaGlKYXRMVMimfkOVBV9u6d4";
-      
+      AsyncStorage.setItem(Constants.ACCESS_TOKEN, accessToken); // for the next view
+
       return AsyncStorage.getItem(Constants.GROUP_ID);
     }).then(function(gid){
         groupId = "561023fe8cbcbe95648a093c";
+        AsyncStorage.setItem(Constants.GROUP_ID, groupId); // for the next view
+
         endPoint = '/group/' + groupId;
         Ajax.do('GET', endPoint, body, success, error, accessToken);
 
