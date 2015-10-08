@@ -1,5 +1,10 @@
 module.exports = {
-  do: function(method, path, body, successCallback, errorCallback, header) {
+
+  do: function(method, path, body, successCallback, errorCallback, token) {
+    var noOperation = function(){ };
+    successCallback = successCallback || noOperation;
+    errorCallback = errorCallback || noOperation;
+
     var endPoint = 'http://moarbaconz.io/api/', parameters = {  
       method: method,
       headers: {
@@ -8,8 +13,10 @@ module.exports = {
       },
       body: JSON.stringify(body)
     };
-    if (header) {
-      parameters.headers['x-access-token'] = header;
+    if (token) {
+      parameters.headers['x-access-token'] = token;
+    }
+    if(method=='GET'){
       delete parameters.body;
       delete parameters.headers['Content-Type'];
     }
@@ -19,7 +26,7 @@ module.exports = {
         return response.json();
       })
       .then((responseJson) => {
-        successCallback(responseJson)
+         successCallback(responseJson)
       })
       .catch((error) => {
         errorCallback(error);

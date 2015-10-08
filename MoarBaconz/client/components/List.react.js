@@ -2,6 +2,7 @@ var React = require('react-native');
 var BaconAPI = require('../utils/BaconAPI');
 var Item = require('./Item.react');
 var items = BaconAPI.getProductData();
+var geo = require('../utils/geo');
 
 var {
   Image,
@@ -11,6 +12,9 @@ var {
 
 // a single product's view
 var List = React.createClass({
+  componentDidMount: function(){
+      geo.setupTracking();
+  },
 
 getInitialState: function() {
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
