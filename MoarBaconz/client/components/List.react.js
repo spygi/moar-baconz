@@ -14,14 +14,13 @@ var {
 
 // a single product's view
 var List = React.createClass({
-  componentDidMount: function(){
-      geo.setupTracking();
-  },
 
   componentDidMount: function() {
     var accessToken, 
     groupId,
     endPoint; 
+
+    geo.setupTracking();
     var success = function(response) {
       if(response){
           this.setState({items: this.state.ds.cloneWithRows(response.items)});
